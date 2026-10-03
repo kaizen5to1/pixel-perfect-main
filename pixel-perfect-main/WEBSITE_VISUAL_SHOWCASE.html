@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Martabaan Restaurant &amp; Bakery — Website Visual Showcase</title>
+  <style>
+    :root {
+      --bg: #181310;
+      --card-bg: #241c18;
+      --card-border: #3d302a;
+      --gold: #d4a373;
+      --gold-bright: #e7bc8a;
+      --text: #fdfbf7;
+      --text-muted: #bdaea3;
+      --tag-bg: rgba(212, 163, 115, 0.15);
+      --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      padding: 40px 20px 80px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header styling */
+    .header {
+      text-align: center;
+      padding-bottom: 50px;
+      border-bottom: 1px solid var(--card-border);
+      margin-bottom: 50px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: var(--tag-bg);
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem, 5vw, 4.2rem);
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--text);
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .hindi-title {
+      font-size: 1.8rem;
+      color: var(--gold);
+      margin-bottom: 15px;
+      font-weight: 500;
+    }
+
+    .lead {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      max-width: 720px;
+      margin: 0 auto 25px;
+    }
+
+    .meta-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      font-size: 0.95rem;
+      color: var(--gold-bright);
+      background: var(--card-bg);
+      padding: 14px 28px;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    /* Section navigation */
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      color: var(--gold-bright);
+      margin: 50px 0 25px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .section-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--card-border);
+    }
+
+    /* Image grid */
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .image-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .image-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--gold);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+    }
+
+    .image-card.featured {
+      grid-column: 1 / -1;
+    }
+
+    .img-wrap {
+      position: relative;
+      width: 100%;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .image-card.featured .img-wrap {
+      height: 480px;
+    }
+
+    .image-card:not(.featured) .img-wrap {
+      height: 280px;
+    }
+
+    .img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .image-card:hover .img-wrap img {
+      transform: scale(1.04);
+    }
+
+    .img-overlay-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(24, 19, 16, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(212, 163, 115, 0.4);
+      color: var(--gold-bright);
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .card-body {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.85rem;
+      color: var(--gold);
+    }
+
+    .zoom-hint {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      opacity: 0.85;
+    }
+
+    /* Modal / Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 8, 7, 0.95);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 8px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+      border: 1px solid var(--gold);
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 25px;
+      right: 30px;
+      font-size: 35px;
+      color: var(--gold);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .lightbox-caption {
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--text);
+      background: rgba(36, 28, 24, 0.9);
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      border: 1px solid var(--card-border);
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        background: #fff;
+        color: #000;
+        padding: 0;
+      }
+      .image-card {
+        page-break-inside: avoid;
+        border: 1px solid #ccc;
+      }
+      .img-wrap {
+        height: auto !important;
+      }
+      .img-wrap img {
+        max-height: 350px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="badge">Visual Portfolio &amp; Image Catalog</div>
+      <h1>MARTABAAN</h1>
+      <div class="hindi-title">मार्तबान रेस्टोरेंट &amp; बेकरी</div>
+      <p class="lead">
+        This document showcases all photographs, food visuals, bakery assets, and ambience graphics built into the Martabaan website. You can present this directly to the buyer to review the look and feel of the website.
+      </p>
+      <div class="meta-bar">
+        <span>📍 Greater Noida, Sector 1</span>
+        <span>•</span>
+        <span>🏷️ Sale Valuation: ₹50,000</span>
+        <span>•</span>
+        <span>🔍 Click any photo to expand full-screen</span>
+      </div>
+    </header>
+
+    <!-- 1. Hero Landing -->
+    <div class="section-title">1. Homepage Hero Banner</div>
+    <div class="image-grid">
+      <div class="image-card featured" onclick="openLightbox('src/assets/hero.jpg', 'Hero Banner — North Indian shared feast table')">
+        <div class="img-wrap">
+          <span class="img-overlay-badge">Top of Homepage</span>
+          <img src="src/assets/hero.jpg" alt="Martabaan Hero Banner" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">The Grand Welcome Feast (Hero Header)</h3>
+          <p class="card-desc">
+            The flagship visual greeting every visitor. Features a sumptuous spread of authentic North Indian curries, fresh tandoori breads, rich dal, and accompaniments. Styled with subtle zoom motion and dark ambient shading to let headline text and reservation buttons shine.
+          </p>
+          <div class="card-footer">
+            <span><strong>Placement:</strong> Full-screen header banner</span>
+            <span class="zoom-hint">🔍 Click to zoom full-screen</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Bakery & Patisserie -->
+    <div class="section-title">2. Artisan Bakery &amp; Celebration Cakes</div>
+    <div class="image-grid">
+      <div class="image-card" onclick="openLightbox('src/assets/bakery.jpg', 'The Artisan Bakery & Patisserie counter')">
+        <div class="img-wrap">
+          <span class="img-overlay-badge">Bakery Feature</span>
+          <img src="src/assets/bakery.jpg" alt="Artisan Bakery Counter" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Fresh Oven Treats &amp; Pastries</h3>
+          <p class="card-desc">
+            Highlights Martabaan's bakery counter featuring freshly baked golden croissants, loaves of artisan bread, gourmet tarts, and sweet delicacies.
+          </p>
+          <div class="card-footer">
+            <span><strong>Placement:</strong> Bakery Section</span>
+            <span class="zoom-hint">🔍 Expand</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="image-card" onclick="openLightbox('src/assets/cakes.jpg', 'Custom Celebration Cakes &amp; Dessert Showcase')">
+        <div class="img-wrap">
+          <span class="img-overlay-badge">Dessert Highlight</span>
+          <img src="src/assets/cakes.jpg" alt="Celebration Cakes" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Celebration Cakes &amp; Confectionery</h3>
+          <p class="card-desc">
+            Showcases Martabaan's designer cakes and confectionery cabinet, highlighting birthday cakes, celebration pastries, and signature desserts.
+          </p>
+          <div class="card-footer">
+            <span><strong>Placement:</strong> Bakery &amp; Desserts Gallery</span>
+            <span class="zoom-hint">🔍 Expand</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Culinary & Menu Highlights -->
+    <div class="section-title">3. Signature Culinary Highlights</div>
+    <div class="image-grid">
+      <div class="image-card" onclick="openLightbox('src/assets/paneer-tikka.jpg', 'Tandoor Se — Paneer Tikka with Mint Chutney')">
+        <div class="img-wrap">
+          <span class="img-overlay-badge">Tandoor Starters</span>
+          <img src="src/assets/paneer-tikka.jpg" alt="Paneer Tikka" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Tikka Shikka — Char-Grilled Paneer Tikka</h3>
+          <p class="card-desc">
+            Golden char-grilled cottage cheese skewers marinated in aromatic Indian spices, garnished with fresh herbs, lemon wedges, and accompanied by cool mint chutney.
+          </p>
+          <div class="card-footer">
+            <span><strong>Placement:</strong> Menu Section &amp; Gallery</span>
+            <span class="zoom-hint">🔍 Expand</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="image-card" onclick="openLightbox('src/assets/curries.jpg', 'Rich Dals & Royal Curries')">
+        <div class="img-wrap">
+          <span class="img-overlay-badge">Main Course</span>
+          <img src="src/assets/curries.jpg" alt="Dal Makhani and Paneer Gravy" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Paneer &amp; Dal — Handi Curries &amp; Dal Bukhara</h3>
+          <p class="card-desc">
+            Slow-cooked velvety Dal Makhani and royal Paneer gravies served in authentic traditional brass handis. Represents Martabaan's rich family recipes.
+          </p>
+          <div class="card-footer">
+            <span><strong>Placement:</strong> Main Course &amp; Gallery</span>
+            <span class="zoom-hint">🔍 Expand</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="image-card" onclick="openLightbox('src/assets/momos-dosa.jpg', 'Oriental Dimsums & Snacks')">
+        <div class="img-wrap">
+          <span class="img-overlay-badge">Oriental &amp; Snacks</span>
+          <img src="src/assets/momos-dosa.jpg" alt="Momos and Evening Snacks" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Oriental Dimsums &amp; Evening Snacks</h3>
+          <p class="card-desc">
+            Steaming authentic momos and crispy street delicacies, catering to young foodies and quick evening bites.
+          </p>
+          <div class="card-footer">
+            <span><strong>Placement:</strong> Oriental Menu &amp; Gallery</span>
+            <span class="zoom-hint">🔍 Expand</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="image-card" onclick="openLightbox('src/assets/hotdog-fries.jpg', 'Bistro Fast Bites & Drinks')">
+        <div class="img-wrap">
+          <span class="img-overlay-badge">Bistro &amp; Fast Bites</span>
+          <img src="src/assets/hotdog-fries.jpg" alt="Loaded Snacks and Fries" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Cafe Casuals — Loaded Bites &amp; Crispy Fries</h3>
+          <p class="card-desc">
+            Comfort snacks including crispy golden fries, loaded rolls, and refreshing shakes—appealing to casual cafe visitors.
+          </p>
+          <div class="card-footer">
+            <span><strong>Placement:</strong> Casual Bites Gallery</span>
+            <span class="zoom-hint">🔍 Expand</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Ambience & Storefront -->
+    <div class="section-title">4. Ambience &amp; Dining Hall</div>
+    <div class="image-grid">
+      <div class="image-card" onclick="openLightbox('src/assets/dining.jpg', 'Warm Family Dining Hall Ambience')">
+        <div class="img-wrap">
+          <span class="img-overlay-badge">Restaurant Ambience</span>
+          <img src="src/assets/dining.jpg" alt="Dining Hall Ambience" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Warm Moments — The Dining Space</h3>
+          <p class="card-desc">
+            Atmospheric interior view showcasing the comfortable seating, warm lighting, and welcoming space designed for family gatherings and celebrations.
+          </p>
+          <div class="card-footer">
+            <span><strong>Placement:</strong> "Our Story" &amp; Gallery</span>
+            <span class="zoom-hint">🔍 Expand</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="image-card" onclick="openLightbox('src/assets/restaurant-placeholder.svg', 'Martabaan Restaurant Exterior & Branding')">
+        <div class="img-wrap">
+          <span class="img-overlay-badge">Location &amp; Storefront</span>
+          <img src="src/assets/restaurant-placeholder.svg" alt="Martabaan Greater Noida Storefront" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Martabaan — Greater Noida Storefront</h3>
+          <p class="card-desc">
+            Official location graphic identifying Shop 4 &amp; 5, Shree Brahma Square, Sector 1, Greater Noida.
+          </p>
+          <div class="card-footer">
+            <span><strong>Placement:</strong> Storefront &amp; Contact Module</span>
+            <span class="zoom-hint">🔍 Expand</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Menu Cards -->
+    <div class="section-title">5. Interactive Menu Card System</div>
+    <div class="image-grid">
+      <div class="image-card" onclick="openLightbox('src/assets/menu-placeholder.svg', 'Interactive Menu Cards — 10 Categories')">
+        <div class="img-wrap">
+          <span class="img-overlay-badge">Menu Card Lightbox</span>
+          <img src="src/assets/menu-placeholder.svg" alt="Interactive Menu Card System" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Full Menu Card Pop-up Viewer</h3>
+          <p class="card-desc">
+            The website includes 10 interactive menu card pop-ups corresponding to each category (Beverages, Tandoor, Curries, Biryani, Bakery, Desserts) with keyboard and swipe navigation.
+          </p>
+          <div class="card-footer">
+            <span><strong>Placement:</strong> Menu Cards Grid Modal</span>
+            <span class="zoom-hint">🔍 Expand</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <img id="lightbox-img" class="lightbox-content" src="" alt="" onclick="event.stopPropagation()">
+    <div id="lightbox-caption" class="lightbox-caption"></div>
+  </div>
+
+  <script>
+    function openLightbox(src, caption) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox-caption').innerText = caption;
+      document.getElementById('lightbox').classList.add('active');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+</body>
+</html>
